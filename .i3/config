@@ -154,4 +154,5 @@ bar {
 
 exec pulseaudio -k && pulseaudio --start
 exec pasystray
+exec .wpa-if-present
 #exec google-chrome
