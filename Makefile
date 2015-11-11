@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 default:
-	for file in $(shell find . -type f | egrep -v "^./(.git/)|(Makefile)"); do \
+	for file in $(shell find . -type f | egrep -v "^./(.git/)|(Makefile)|(.*\.swp)"); do \
 		f=$$(echo $${file:2}); \
 		src=$$(echo $$PWD/$$f); \
 		dst=$$(echo $$HOME/$$f); \
