@@ -152,7 +152,7 @@ bar {
         status_command i3status
 }
 
-exec pulseaudio -k && pulseaudio --start
-exec pasystray
-exec .wpa-if-present
+#exec pulseaudio -k && pulseaudio --start
+#exec pasystray
+exec .wlan-if-present
 #exec google-chrome

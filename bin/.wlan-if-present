@@ -4,5 +4,5 @@
 if lspci | grep Wireless >& /dev/null; then
 	echo "Wireless detected"
 	sudo /sbin/wpa_supplicant -i wlan0 -c $HOME/.config/wpa_supplicant.conf -B
-	sudo dhclient wlan0
+	sudo dhclient -nw wlan0
 fi
