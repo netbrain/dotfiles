@@ -6,5 +6,5 @@ default:
 		src=$$(echo $$PWD/$$f); \
 		dst=$$(echo $$HOME/$$f); \
 		test -f $$dst && rm -i $$dst;  \
-		bash -x -c "ln -s $$src $$dst"; \
+		bash -x -c "mkdir -p $$(dirname $$dst) && ln -s $$src $$dst"; \
 	done
