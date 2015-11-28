@@ -1,0 +1,22 @@
+#!/bin/bash
+apt-get update && apt-get install -y \ 
+  acpi \
+  acpid \
+  curl \
+  fonts-dejavu \
+  fonts-dejavu-core \
+  fonts-dejavu-extra \
+  fonts-inconsolata \
+  fonts-vlgothic \
+  git \
+  i3 \
+  rxvt-unicode-256color \
+  strace \
+  sudo \
+  ttf-dejavu \
+  ttf-dejavu-core \
+  ttf-dejavu-extra \
+  vim-nox \
+  xorg \
+
+chmod -x $0
