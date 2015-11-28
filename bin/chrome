@@ -5,24 +5,31 @@ export  $(eval echo -e $(cat $HOME/.config/user-dirs.dirs | grep -v "#" | xargs)
 run() {
 	docker run -d \
 		--memory 3gb \
-		--net host \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-e DISPLAY=unix$DISPLAY \
 		-v $XDG_DOWNLOAD_DIR:/root/Downloads \
+		-v $HOME/.Xauthority:/root/.Xauthority:ro \
 		-v $HOME/.chrome:/data \
 		-v /dev/shm:/dev/shm \
 		-v /etc/hosts:/etc/hosts \
 		--device /dev/snd \
+		-e PULSE_SERVER=localhost \
 		--device /dev/dri \
 		--device /dev/video0 \
 		--device /dev/usb \
 		--device /dev/bus/usb \
-		--group-add audio \
 		--group-add video \
+		--group-add audio \
 		--name chrome \
 		jess/chrome --user-data-dir=/data --force-device-scale-factor=1 \
 		$@
+
+		#--device /dev/snd \
+		#--group-add audio \
+		#--link pulseaudio:pulseaudio \
+		#--net host \
+
 }
 
 restart() {

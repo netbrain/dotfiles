@@ -154,5 +154,7 @@ bar {
 
 #exec pulseaudio -k && pulseaudio --start
 #exec pasystray
+exec xhost +
 exec .wlan-if-present
-#exec google-chrome
+exec pulseaudio
+exec chrome
