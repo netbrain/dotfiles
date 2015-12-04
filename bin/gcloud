@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if ! docker inspect gcloud &> /dev/null ; then
+  docker run --name gcloud -it netbrain/gcloud
+fi
+
+docker start gcloud
+ENTRYPOINT=$(docker inspect -f "{{(index .Config.Entrypoint 0)}}" gcloud)
+docker exec -it gcloud $ENTRYPOINT $@
