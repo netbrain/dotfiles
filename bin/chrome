@@ -15,8 +15,6 @@ run() {
 		-v /etc/hosts:/etc/hosts \
 		--device /dev/snd \
 		-e PULSE_SERVER=localhost \
-		--device /dev/dri \
-		--device /dev/video0 \
 		--device /dev/usb \
 		--device /dev/bus/usb \
 		--group-add video \
@@ -29,7 +27,8 @@ run() {
 		#--group-add audio \
 		#--link pulseaudio:pulseaudio \
 		#--net host \
-
+		#--device /dev/dri \
+		#--device /dev/video0 \
 }
 
 restart() {

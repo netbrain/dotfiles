@@ -73,7 +73,7 @@
 *saveLines:             999999
 
 !-- Xft settings -- !
-Xft.dpi:        120
+Xft.dpi:        92
 Xft.rgba:       rgb
 Xft.autohint:   0
 Xft.lcdfilter:  lcddefault
