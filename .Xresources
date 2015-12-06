@@ -44,7 +44,8 @@
 !
 ! URxvt*background:            S_base03
 
-*background:              S_base03
+*background:              [90]S_base03
+*depth: 		  32
 *foreground:              S_base0
 *fading:                  40
 *fadeColor:               S_base03
@@ -82,10 +83,10 @@ Xft.hinting:    1
 Xft.antialias:  1
 
 ! -- Fonts -- !
-URxvt.font:xft:Inconsolata:pixelSize=10,style=Regular, xft:Inconsolata:pixelsize=19,style=Regular
-URxvt.boldFont:xft:Inconsolata:style=Bold,pixelSize=10, xft:Inconsolata:pixelsize=19,style=Regular
+URxvt.font:xft:Inconsolata:size=15
+URxvt.boldFont:xft:Inconsolata:bold:size=15
 
-*faceSize:              10
+*faceSize:              12
 *bellIsUrgent:          true
 
 !! scroll
