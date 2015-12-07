@@ -16,7 +16,14 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+#Dircolors
+#if [ -x /usr/bin/dircolors ]; then
+#    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+#fi
+
+#exports
+for file in ~/.exports.d/*; do
+	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
+done
+unset file
+
