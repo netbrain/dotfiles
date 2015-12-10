@@ -17,6 +17,9 @@ Plugin 'scrooloose/nerdtree'
 " COLORSCHEMES
 Plugin 'altercation/vim-colors-solarized'
 
+" Bracketed paste
+Plugin 'ConradIrwin/vim-bracketed-paste'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required

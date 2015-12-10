@@ -9,12 +9,11 @@ run() {
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-e DISPLAY=unix$DISPLAY \
 		-v $XDG_DOWNLOAD_DIR:/root/Downloads \
-		-v $HOME/.Xauthority:/root/.Xauthority:ro \
 		-v $HOME/.chrome:/data \
 		-v /dev/shm:/dev/shm \
 		-v /etc/hosts:/etc/hosts \
+		-v /etc/asound.conf:/etc/asound.conf:ro \
 		--device /dev/snd \
-		-e PULSE_SERVER=localhost \
 		--device /dev/usb \
 		--device /dev/bus/usb \
 		--group-add video \
@@ -23,6 +22,8 @@ run() {
 		jess/chrome --user-data-dir=/data --force-device-scale-factor=1 \
 		$@
 
+		#-v $HOME/.Xauthority:/root/.Xauthority:ro \
+		#=unix$DISPLAY\
 		#--device /dev/snd \
 		#--group-add audio \
 		#--link pulseaudio:pulseaudio \

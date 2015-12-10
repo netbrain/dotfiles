@@ -166,15 +166,6 @@ bar {
   }
 }
 
-exec sh ~/.fehbg &
-exec compton -CGb
-#exec pulseaudio -k && pulseaudio --start
-#exec pasystray
-exec xhost +
-exec .wlan-if-present
-exec pulseaudio
-exec chrome
-
 client.focused #cb4b16 #cb4b16 #ffffff #b58900
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused #333333 #333333 #888888 #292d2e
