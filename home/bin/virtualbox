@@ -1,0 +1,38 @@
+#!/bin/bash
+
+function install(){
+  docker run --rm -it \
+	-e KERN_DIR=/usr/src/linux \
+	-v /usr/src:/usr/src:ro \
+	-v /lib/modules:/lib/modules \
+	--name virtualbox-setup \
+	-w /var/lib/dkms/vboxhost/5.0.8/build \
+	--entrypoint bash \
+	jess/virtualbox \
+	-c "make && make install"
+}
+
+function run(){
+  if ! lsmod | grep vboxdrv &> /dev/null; then 
+    echo "lodaing vboxdrv module"
+    sudo modprobe vboxdrv
+  fi
+  docker rm virtualbox
+  docker run -it \
+ 	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-e DISPLAY=unix$DISPLAY \
+	--privileged \
+	--name virtualbox \
+	jess/virtualbox
+}
+
+
+if find /lib/modules/$(uname -r) | grep vboxdrv &> /dev/null ; then
+  #vboxdrv is already installed
+  run
+else
+  #vboxdrv is not installed
+  install
+  run
+fi
+

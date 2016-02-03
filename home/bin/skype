@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker run --name skype --rm -v /tmp/.X11-unix:/tmp/.X11-unix \
+	-v $HOME/.Skype:/home/skype/.Skype \
+	-e DISPLAY=unix$DISPLAY \
+	--link pulseaudio:pulseaudio \
+	-e PULSE_SERVER=pulseaudio \
+	--device /dev/video0 \
+	jess/skype

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if ! docker inspect vpn >& /dev/null ; then
+	docker run -d \
+		-v /home/netbrain/.secrets.d/docker1.netdevel.org.vpn:/vpn.conf \
+		--cap-add=NET_ADMIN \
+		--device=/dev/net/tun \
+		--name vpn \
+		--dns 8.8.8.8 \
+		netbrain/openvpn-client
+else
+	docker start vpn
+fi

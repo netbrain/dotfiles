@@ -1,0 +1,13 @@
+#!/bin/bash
+if  ! docker inspect intellij-go-data >& /dev/null;  then
+	docker create -v /home/docker/.IdeaIC15 --name intellij-go-data netbrain/intellij-go
+fi
+
+docker run -it --rm \
+        -e DISPLAY=unix$DISPLAY \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $HOME/.Xauthority:/home/docker/.Xauthority \
+        -v $GOPATH:/home/docker/dev/go \
+	--volumes-from intellij-go-data \
+        netbrain/intellij-go
+

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+printenv > /tmp/printenv.log
+
+export  $(eval echo -e $(cat $HOME/.config/user-dirs.dirs | grep -v "#" | xargs))
+
+run() {
+	docker run -d \
+		--net=host \
+		--memory 3gb \
+		-v /etc/localtime:/etc/localtime:ro \
+		-v /tmp/.X11-unix:/tmp/.X11-unix \
+		-e DISPLAY=unix$DISPLAY \
+		-v $XDG_DOWNLOAD_DIR:/root/Downloads \
+		-v $HOME/.chrome:/data \
+		-v /dev/shm:/dev/shm \
+		-v /etc/hosts:/etc/hosts \
+		-v /etc/asound.conf:/etc/asound.conf:ro \
+		-v /var/run/dbus:/var/run/dbus \
+		--device /dev/snd \
+		--device /dev/usb \
+		--device /dev/bus/usb \
+		--device /dev/video0 \
+		--group-add video \
+		--group-add audio \
+		--name chrome \
+		jess/chrome:beta --user-data-dir=/data --force-device-scale-factor=1 \
+		$@
+}
+
+restart() {
+	docker restart chrome
+}
+
+if ! docker inspect chrome >& /dev/null ; then
+	run
+else
+	restart
+fi
+

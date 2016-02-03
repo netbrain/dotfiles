@@ -1,0 +1,24 @@
+#!/bin/bash
+#USE CTRL+P CTRL+Q to detatch
+export  $(eval echo -e $(cat $HOME/.config/user-dirs.dirs | grep -v "#" | xargs))
+
+if ! docker inspect vpn >& /dev/null ; then
+	#depends on vpn
+	vpn
+fi
+
+if ! docker inspect rtorrent >& /dev/null ; then
+  docker run -d -it \
+	--net=container:vpn \
+	--name rtorrent \
+	-v $XDG_DOWNLOAD_DIR:/root/watch \
+	-v $XDG_DOWNLOAD_DIR:/root/downloads \
+       	netbrain/rtorrent
+  	docker attach rtorrent
+else
+	docker start rtorrent
+	docker attach rtorrent 
+fi
+
+
+

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+run() {
+  docker run -d \
+    -v /etc/localtime:/etc/localtime:ro \
+    --device /dev/snd \
+    -p 4713:4713 \
+    --restart always \
+    --name pulseaudio \
+    jess/pulseaudio 
+
+# docker run -d \
+#	-v /etc/localtime:/etc/localtime:ro \
+#	--device /dev/snd \
+#	--name pulseaudio \
+#	-p 4713:4713 \
+#	-v /var/run/dbus:/var/run/dbus \
+#	-v /etc/machine-id:/etc/machine-id \
+#	-v $HOME/.pulse:/home/pulseaudio/.pulse \
+#	jess/pulseaudio $@
+}
+
+restart() {
+	docker restart pulseaudio
+}
+
+if ! docker inspect pulseaudio >& /dev/null ; then
+	run
+else
+	restart
+fi

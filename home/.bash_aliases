@@ -1,0 +1,6 @@
+alias docker-rm-all='docker rm $(docker ps -a -q)'
+alias docker-rmi-all='docker rmi $(docker images -q)'
+alias less='less --RAW-CONTROL-CHARS'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias xterm='uxterm'

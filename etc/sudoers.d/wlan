@@ -1,2 +1,0 @@
-%sudo   ALL=(ALL) NOPASSWD: /sbin/wpa_supplicant
-%sudo   ALL=(ALL) NOPASSWD: /sbin/dhclient

@@ -1,7 +1,0 @@
-
-#!/bin/bash
-
-# Make vim the default editor
-export EDITOR=vim
-export TERMINAL=urxvt
-export TERM=rxvt-unicode-256color
