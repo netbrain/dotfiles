@@ -72,6 +72,9 @@ XF86AudioLowerVolume
 "/usr/bin/amixer -q sset Master 2+"
 XF86AudioRaiseVolume
 
+"/usr/bin/amixer -q sset Master 1+ toggle"
+XF86AudioMute
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
