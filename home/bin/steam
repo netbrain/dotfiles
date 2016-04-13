@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e
+
+DATA_CONTAINER="data-steam"
+DOCKER_IMAGE="netbrain/steam"
+
+
+if  ! docker inspect $DATA_CONTAINER >& /dev/null;  then
+	docker create \
+		-v /home/steam \
+		--name $DATA_CONTAINER \
+		busybox
+	docker run --volumes-from $DATA_CONTAINER busybox chown -R 1000:1000 /home/steam
+fi
+
+docker run -it --rm \
+        -e DISPLAY=unix$DISPLAY \
+	--privileged \
+	--net=host \
+	-v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $HOME/.Xauthority:/home/steam/.Xauthority \
+	-v /dev/shm:/dev/shm \
+	-v /etc/machine-id:/etc/machine-id \
+	-v /run/user/$UID/pulse/native:/tmp/pulse \
+	-v /dev/dri:/dev/dri \
+	--name steam \
+	--volumes-from $DATA_CONTAINER \
+        $DOCKER_IMAGE $@
