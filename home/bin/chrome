@@ -1,18 +1,16 @@
 #!/bin/bash
 
-printenv > /tmp/printenv.log
-
 export  $(eval echo -e $(cat $HOME/.config/user-dirs.dirs | grep -v "#" | xargs))
 
-run() {
-	docker run -d \
+	docker run -i --rm \
 		--net=host \
-		--memory 3gb \
 		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-e DISPLAY=unix$DISPLAY \
-		-v $XDG_DOWNLOAD_DIR:/root/Downloads \
-		-v $HOME/.chrome:/data \
+		-e HOME=/chrome \
+		-v $XDG_DOWNLOAD_DIR:/chrome/Downloads \
+		-v $HOME:/chrome/home:ro \
+		-v $HOME/.chrome:/chrome/.chrome \
 		-v /dev/shm:/dev/shm \
 		-v /etc/hosts:/etc/hosts \
 		-v /etc/asound.conf:/etc/asound.conf:ro \
@@ -20,21 +18,8 @@ run() {
 		--device /dev/snd \
 		--device /dev/usb \
 		--device /dev/bus/usb \
-		--device /dev/video0 \
 		--group-add video \
 		--group-add audio \
 		--name chrome \
-		jess/chrome:beta --user-data-dir=/data --force-device-scale-factor=1 \
-		$@
-}
-
-restart() {
-	docker restart chrome
-}
-
-if ! docker inspect chrome >& /dev/null ; then
-	run
-else
-	restart
-fi
-
+		--entrypoint="sh" \
+		jess/chrome:beta -c "groupadd -g $(id -g) $(id -g -n) && useradd -M -u $(id -u) -g $(id -g) -G audio,video $(id -u -n) && chown $(id -u):$(id -g) /chrome && su - -c 'google-chrome --user-data-dir=/chrome/.chrome --force-device-scale-factor=1' --preserve-environment $(id -u -n)" 

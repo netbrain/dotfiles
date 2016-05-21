@@ -180,4 +180,4 @@ new_float pixel 1
 # windows pop-ups
 for_window [window_role="pop-up"] floating enable,move absolute center
 
-
+exec ~/.xstartup
