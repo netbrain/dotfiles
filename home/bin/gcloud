@@ -1,9 +1,14 @@
 #!/bin/bash
 
 if ! docker inspect gcloud &> /dev/null ; then
-  docker run --name gcloud -it netbrain/gcloud
+  docker run --name gcloud -it -v /tmp:/tmp netbrain/gcloud
 fi
 
 docker start gcloud
 ENTRYPOINT=$(docker inspect -f "{{(index .Config.Entrypoint 0)}}" gcloud)
-docker exec -it gcloud $ENTRYPOINT $@
+
+if [[ $@ == gsutil* ]]; then
+  docker exec -it gcloud $(dirname $ENTRYPOINT)/$@
+else
+  docker exec -it gcloud $ENTRYPOINT $@
+fi
