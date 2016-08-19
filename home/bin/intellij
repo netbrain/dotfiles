@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -e
+set -x
+
+: ${1?"Usage: $0 PATH [image]"}
+
+REALPATH=$(realpath $1)
+DATA_CONTAINER="data-intellij-`echo $REALPATH | sum | awk '{print $1}'`"
+M2_CONTAINER="data-maven-cache"
+DOCKER_IMAGE=${2:-"netbrain/intellij"}
+
+
+if  ! docker inspect $DATA_CONTAINER >& /dev/null;  then
+	docker create \
+		-v /home/docker/.IntelliJIdea2016.1 \
+		--name $DATA_CONTAINER \
+		--label CONTEXT=$REALPATH \
+		busybox
+	docker run --volumes-from $DATA_CONTAINER busybox chown -R 1000:1000 /home/docker
+fi
+
+if  ! docker inspect $M2_CONTAINER >& /dev/null;  then
+	docker create \
+		-v /home/docker/.m2 \
+		--name $M2_CONTAINER \
+		busybox
+	docker run --volumes-from $M2_CONTAINER busybox chown -R 1000:1000 /home/docker
+fi
+
+docker run --rm \
+        -e DISPLAY=unix$DISPLAY \
+	--privileged \
+	--net="host" \
+	--name intellij-$(basename $REALPATH)-$(date +%s) \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $HOME/.Xauthority:/home/docker/.Xauthority \
+        -v $REALPATH:/home/docker/dev/`basename $REALPATH` \
+	--volumes-from $DATA_CONTAINER \
+	--volumes-from $M2_CONTAINER \
+        $DOCKER_IMAGE
+
+exit 0
