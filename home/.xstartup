@@ -1,7 +1,0 @@
-#!/bin/bash
-compton -CGb & 
-wicd-gtk --tray &
-xrdb -merge ~/.Xresources &
-eval `cat ~/.fehbg` &
-xbindkeys &
-xhost local:root &

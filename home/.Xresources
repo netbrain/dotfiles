@@ -100,3 +100,27 @@ Xft.antialias:  1
 
 ! Trim trailing spaces
 *trimSelection: true
+
+! ------------------------------------------------------------------------------
+! ! ROFI Color theme
+! ! Copyright: Rasmus Steinke
+! ! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #002b37, #cb4b16, #003642
+rofi.color-normal: #002b37, #819396, #003643, #008ed4, #ffffff
+rofi.color-active: #002b37, #008ed4, #003643, #008ed4, #66c6ff
+rofi.color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
+
+rofi.separator-style: solid
+rofi.sidebar-mode: true
+rofi.bw: 1
+rofi.columns: 1
+rofi.padding: 16
+
+rofi.yoffset: 0
+rofi.fake-transparency: false
+rofi.location: 0
+rofi.width: 50
+rofi.font: Inconsolata 12
+rofi.lines: 15
+rofi.fixed-num-lines: true
