@@ -15,10 +15,13 @@ xbindkeys
 #xhost local:root
 
 #start compositor
-$(sleep 1 && compton -CGb) &
+#$(sleep 1 && compton -CGb) &
 
 #background
 feh  --bg-fill ~/x/pictures/wallpaper.jpg
+
+#connman
+cmst -m
 
 #start i3
 exec i3
