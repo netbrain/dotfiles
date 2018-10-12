@@ -12,16 +12,16 @@ xrdb -merge ~/.Xresources
 xbindkeys
 
 #xhost
-#xhost local:root
+xhost local:root
 
 #start compositor
 #$(sleep 1 && compton -CGb) &
 
 #background
-feh  --bg-fill ~/x/pictures/wallpaper.jpg
+feh  --bg-fill ~/pictures/wallpaper.png
 
 #connman
-cmst -m
+#cmst -m
 
 #start i3
 exec i3

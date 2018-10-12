@@ -32,7 +32,7 @@ if find /lib/modules/$(uname -r) | grep vboxdrv &> /dev/null ; then
   run
 else
   #vboxdrv is not installed
-  install
+  #install
   run
 fi
 

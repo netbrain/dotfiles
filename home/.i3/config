@@ -10,7 +10,7 @@ focus_follows_mouse no
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-set $lock exec i3lock -c 000000 -f -e -I 30 -i ~/x/pictures/lock.png -t
+set $lock exec i3lock -c 000000 -p win -f -u -e -I 30 -i ~/pictures/lock.png
 
 set $mod Mod4
 
@@ -209,7 +209,7 @@ workspace 10 output eDP-1
 assign [class="VirtualBox"] 9
 
 exec $lock
-#exec vboxmanage startvm --type gui Windows10
 exec blueman-applet
 exec cmst -m
 exec pasystray
+exec jetbrains-toolbox --minimize --window-mode
