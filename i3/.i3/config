@@ -10,7 +10,7 @@ focus_follows_mouse no
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-set $lock exec i3lock -c 000000 -p win -f -u -e -I 30 -i ~/pictures/lock.png
+set $lock ~/.i3/lock.sh
 
 set $mod Mod4
 
@@ -128,7 +128,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'How would you like to exit?' -b 'Halt' '/home/netbrain/bin/vbox-graceful;halt'  -b 'Reboot' '/home/netbrain/bin/vbox-graceful;reboot'  -b 'Exit X' '/home/netbrain/bin/vbox-graceful;i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'How would you like to exit?' -b 'Halt' 'halt'  -b 'Reboot' 'reboot'  -b 'Exit X' 'i3-msg exit'"
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -167,7 +167,7 @@ bindsym $mod+r mode "resize"
 
 # status bar
 bar {
-  tray_output eDP-1
+  tray_output primary
   position bottom
   status_command i3status -c ~/.i3/status_config
   workspace_buttons yes
@@ -208,7 +208,7 @@ workspace 10 output eDP-1
 
 assign [class="VirtualBox"] 9
 
-exec $lock
+exec feh --bg-max /home/netbrain/.i3/wallpaper.png
 exec blueman-applet
 exec cmst -m
 exec pasystray

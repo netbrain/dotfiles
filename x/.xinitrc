@@ -17,9 +17,6 @@ xhost local:root
 #start compositor
 #$(sleep 1 && compton -CGb) &
 
-#background
-feh  --bg-fill ~/pictures/wallpaper.png
-
 #connman
 #cmst -m
 
