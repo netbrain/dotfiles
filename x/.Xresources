@@ -78,7 +78,7 @@ Xft.hintstyle:  hintfull
 Xft.hinting:    1
 Xft.antialias:  1
 
-*faceSize:              12
+*faceSize:              14
 *bellIsUrgent:          true
 
 ! General settings
@@ -96,7 +96,7 @@ Xft.antialias:  1
 *renderFont: True
 *preeditType: Root
 *xftAntialias: true
-*faceName: xft:Inconsolata-12
+*faceName: xft:Inconsolata
 
 ! Trim trailing spaces
 *trimSelection: true
@@ -121,6 +121,6 @@ rofi.yoffset: 0
 rofi.fake-transparency: false
 rofi.location: 0
 rofi.width: 50
-rofi.font: Inconsolata 12
+rofi.font: Inconsolata 14
 rofi.lines: 15
 rofi.fixed-num-lines: true

@@ -4,6 +4,7 @@
 [ -f /etc/xprofile ] && . /etc/xprofile
 [ -f ~/.xprofile ] && . ~/.xprofile
 [ -f ~/.profile ] && . ~/.profile
+[ -f ~/.Xmodmap ] && /usr/bin/xmodmap ~/.Xmodmap
 
 #xresources
 xrdb -merge ~/.Xresources

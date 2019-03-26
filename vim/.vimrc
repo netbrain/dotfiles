@@ -17,6 +17,7 @@ let g:solarized_termtrans = 1	" transparent terminal
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized', { 'set':  'all' }
+Plug 'chrisbra/Colorizer'
 
 " Add plugins to &runtimepath
 call plug#end()

@@ -11,3 +11,5 @@ zip
 xterm
 direnv
 snapd
+libnotify-bin
+dunst
