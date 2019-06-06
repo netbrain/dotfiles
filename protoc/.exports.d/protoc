@@ -1,0 +1,4 @@
+#!/bin/bash
+#https://github.com/protocolbuffers/protobuf/releases/tag/v3.8.0
+#Adds protoc/bin to $PATH
+export PATH="$PATH:$HOME/tools/protoc/bin"
