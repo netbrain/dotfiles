@@ -6,7 +6,7 @@ set colored-stats on
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=50000000;
 export HISTFILESIZE=$HISTSIZE;
-export HISTCONTROL=ignoredups;
+export HISTCONTROL=ignoredups:erasedups
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config
 # ignoring wildcards
@@ -16,3 +16,8 @@ export HISTCONTROL=ignoredups;
         grep -v "[?*]" | cut -d " " -f2 | \
         tr ' ' '\n')" scp sftp ssh
 
+# Append to history
+shopt -s histappend
+
+# After each command append to the history file and reread it
+export PROMPT_COMMAND="history -a; history -c; history -r;$PROMPT_COMMAND"
